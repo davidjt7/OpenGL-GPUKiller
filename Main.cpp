@@ -65,24 +65,21 @@ int main() {
 
 	int i = 0;
 	while (!glfwWindowShouldClose(window)) {
-		glClearColor(1.0f, 0.764f, 0.301f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		shaderProgram.Activate();
-
-		if (i == 1000) {
+		if (i == 100000) {
+			glClearColor(1.0f, 0.764f, 0.301f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
+			shaderProgram.Activate();
 			glUniform1f(scaleUniformID, distribution(generator));
 			glUniform1f(translateXUniformID, distribution(generator));
 			glUniform1f(translateYUniformID, distribution(generator));
 			glUniform1f(translateZUniformID, distribution(generator));
+			VAO1.Bind();
+			glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+			glfwSwapBuffers(window);
 			i = 0;
-		}
-
-		VAO1.Bind();
-		glDrawElements(GL_TRIANGLES, 9,GL_UNSIGNED_INT, 0);
-		glfwSwapBuffers(window);
+		}		
 
 		glfwPollEvents();
-
 		i++;
 	}
 
