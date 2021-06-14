@@ -1,23 +1,23 @@
 #include"VBO.h"
 
-VBO::VBO(GLfloat* vertices, GLsizeiptr size)
+VertexBufferObject::VertexBufferObject(GLfloat* vertices, GLsizeiptr size)
 {
 	glGenBuffers(1, &ID);
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_DYNAMIC_DRAW);
 }
 
-void VBO::Bind()
+void VertexBufferObject::Bind()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 }
 
-void VBO::Unbind()
+void VertexBufferObject::Unbind()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void VBO::Delete()
+void VertexBufferObject::Delete()
 {
 	glDeleteBuffers(1, &ID);
 }

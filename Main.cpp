@@ -44,10 +44,10 @@ int main() {
 
 	Shader shaderProgram("default.vert", "default.frag");
 
-	VAO VAO1;
+	VertexArrayObject VAO1;
 	VAO1.Bind();
-	VBO VBO1(vertices, sizeof(vertices));
-	EBO EBO1(indices, sizeof(indices));
+	VertexBufferObject VBO1(vertices, sizeof(vertices));
+	ElementBufferObject EBO1(indices, sizeof(indices));
 
 	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void*)0);
 	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 6 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -63,9 +63,9 @@ int main() {
 	std::default_random_engine generator;
 	std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
-	int i = 0;
+	int makeShiftTimer = 100000;
 	while (!glfwWindowShouldClose(window)) {
-		if (i == 100000) {
+		if (makeShiftTimer == 100000) {
 			glClearColor(1.0f, 0.764f, 0.301f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 			shaderProgram.Activate();
@@ -76,11 +76,11 @@ int main() {
 			VAO1.Bind();
 			glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
 			glfwSwapBuffers(window);
-			i = 0;
+			makeShiftTimer = 0;
 		}		
 
 		glfwPollEvents();
-		i++;
+		makeShiftTimer++;
 	}
 
 	VAO1.Delete();

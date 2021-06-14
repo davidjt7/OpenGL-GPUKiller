@@ -3,11 +3,11 @@
 
 #include<glad/glad.h>
 
-class VBO
+class VertexBufferObject
 {
 public:
 	GLuint ID;
-	VBO(GLfloat* vertices, GLsizeiptr size);
+	VertexBufferObject(GLfloat* vertices, GLsizeiptr size);
 
 	void Bind();
 	void Unbind();

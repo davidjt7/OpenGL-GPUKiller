@@ -3,11 +3,11 @@
 
 #include<glad/glad.h>
 
-class EBO
+class ElementBufferObject
 {
 public:
 	GLuint ID;
-	EBO(GLuint* indices, GLsizeiptr size);
+	ElementBufferObject(GLuint* indices, GLsizeiptr size);
 
 	void Bind();
 	void Unbind();
